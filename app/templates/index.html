@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Student Performance Dashboard</h1>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Average Marks</h3>
+            <p>{{ avg }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Highest Marks</h3>
+            <p>{{ max }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <p>{{ total }}</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2>Average Marks per Student</h2>
+        <canvas id="marksChart"></canvas>
+    </div>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+
+        {% for row in tables %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.department }}</td>
+            <td>{{ row.subject }}</td>
+            <td>{{ row.marks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>{{ chart_labels }}</p>
+    <p>{{ chart_values }}</p>
+    <script>
+        const labels = {{ chart_labels | tojson }};
+        const values = {{ chart_values | tojson }};
+
+        const ctx = document.getElementById('marksChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Average Marks',
+                    data: values,
+                    backgroundColor: '#1f3c88',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
