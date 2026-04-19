@@ -48,15 +48,9 @@
         {% endfor %}
     </table>
 
-    <p>{{ chart_labels }}</p>
-    <p>{{ chart_values }}</p>
     <script>
         const labels = ["Amit", "Ananya", "Priya", "Rahul", "Shreya"];
         const values = [65, 78, 0, 45, 81];
-    </script>
-    <script>
-        const labels = {{ chart_labels | tojson }};
-        const values = {{ chart_values | tojson }};
 
         const ctx = document.getElementById('marksChart').getContext('2d');
 
