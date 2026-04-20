@@ -9,33 +9,7 @@ h1 {
     text-align: center;
     color: #1f3c88;
     margin-bottom: 30px;
-}
-
-table {
-    width: 80%;
-    margin: auto;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-th {
-    background-color: #1f3c88;
-    color: white;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #dbe9ff;
+    font-size: 34px;
 }
 
 .cards {
@@ -53,6 +27,11 @@ tr:hover {
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
 }
 
 .card h3 {
@@ -70,7 +49,7 @@ tr:hover {
 
 .chart-container {
     width: 80%;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 30px auto;
     background-color: white;
     padding: 20px;
     border-radius: 12px;
@@ -81,9 +60,129 @@ tr:hover {
     text-align: center;
     color: #1f3c88;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
-#marksChart {
+#marksChart,
+#subjectChart {
     width: 100% !important;
     height: 400px !important;
+}
+
+label {
+    font-size: 18px;
+    color: #1f3c88;
+    margin-right: 10px;
+}
+
+#deptFilter {
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-top: 10px;
+}
+
+#deptFilter:hover {
+    border-color: #1f3c88;
+}
+
+table {
+    width: 85%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+th {
+    background-color: #1f3c88;
+    color: white;
+    font-size: 17px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #dbe9ff;
+}
+
+/* Optional color categories for marks */
+.high {
+    background-color: #d4edda !important;
+}
+
+.medium {
+    background-color: #fff3cd !important;
+}
+
+.low {
+    background-color: #f8d7da !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .chart-container,
+    table {
+        width: 95%;
+    }
+
+    #marksChart,
+    #subjectChart {
+        height: 320px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 85%;
+    }
+
+    .chart-container h2 {
+        font-size: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #marksChart,
+    #subjectChart {
+        height: 280px !important;
+    }
+
+    #deptFilter {
+        width: 80%;
+        max-width: 300px;
+    }
 }
