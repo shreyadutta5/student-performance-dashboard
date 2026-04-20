@@ -1,0 +1,31 @@
+[
+  { "name": "Shreya", "department": "CSE", "subject": "Math", "marks": 85 },
+  { "name": "Shreya", "department": "CSE", "subject": "Science", "marks": 79 },
+
+  { "name": "Rahul", "department": "CSE", "subject": "Math", "marks": 90 },
+  { "name": "Rahul", "department": "CSE", "subject": "Science", "marks": 78 },
+
+  { "name": "Ananya", "department": "IT", "subject": "Math", "marks": 76 },
+  { "name": "Ananya", "department": "IT", "subject": "Science", "marks": 72 },
+
+  { "name": "Amit", "department": "ECE", "subject": "Math", "marks": 80 },
+    { "name": "Amit", "department": "ECE", "subject": "Science", "marks": 0 },
+    
+    { "name": "Riya", "department": "ME", "subject": "Math", "marks": 91 },
+    { "name": "Riya", "department": "ME", "subject": "Science", "marks": 86 },
+    
+    { "name": "Kabir", "department": "IT", "subject": "Math", "marks": 90 },
+    { "name": "Kabir", "department": "IT", "subject": "Science", "marks": 95 },
+    
+    { "name": "Zoya", "department": "ECE", "subject": "Math", "marks": 0 },
+    { "name": "Zoya", "department": "ECE", "subject": "Science", "marks": 74 },
+    
+    { "name": "Priya", "department": "CSE", "subject": "Math", "marks": 89 },
+    { "name": "Priya", "department": "CSE", "subject": "Science", "marks": 0 },
+
+    { "name": "Arjun", "department": "ECE", "subject": "Math", "marks": 80 },
+    { "name": "Arjun", "department": "ECE", "subject": "Science", "marks": 72 },
+    
+    { "name": "Sneha", "department": "IT",  "subject": "Math", "marks": 0 },
+    { "name": "Sneha", "department": "IT",  "subject": "Science", "marks": 88 }
+]

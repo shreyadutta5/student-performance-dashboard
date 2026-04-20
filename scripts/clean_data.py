@@ -5,7 +5,8 @@ from transform import normalize_marks, calculate_average, validate_data
 marks = pd.read_csv('../data/marks.csv')
 
 #Cleaning
-marks['marks'] = marks['marks'].fillna(0)
+marks['marks'] = marks['marks'].replace(0, pd.NA)
+marks = marks.dropna(subset=['marks'])
 marks['marks'] = marks['marks'].astype(int)
 
 #Validation

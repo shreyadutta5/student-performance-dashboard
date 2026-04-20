@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -12,17 +12,17 @@
     <div class="cards">
         <div class="card">
             <h3>Average Marks</h3>
-            <p>59.25</p>
+            <p>82.15</p>
         </div>
 
         <div class="card">
             <h3>Highest Marks</h3>
-            <p>90</p>
+            <p>91</p>
         </div>
 
         <div class="card">
             <h3>Total Students</h3>
-            <p>5</p>
+            <p>10</p>
         </div>
     </div>
 
@@ -31,26 +31,52 @@
         <canvas id="marksChart"></canvas>
     </div>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Subject</th>
-            <th>Marks</th>
-        </tr>
-        <tr><td>Shreya</td><td>CSE</td><td>Math</td><td>85</td></tr>
-        <tr><td>Shreya</td><td>CSE</td><td>Science</td><td>78</td></tr>
-        <tr><td>Rahul</td><td>IT</td><td>Math</td><td>90</td></tr>
-        <tr><td>Rahul</td><td>IT</td><td>Science</td><td>0</td></tr>
-        <tr><td>Ananya</td><td>CSE</td><td>Math</td><td>76</td></tr>
-        <tr><td>Ananya</td><td>CSE</td><td>Science</td><td>80</td></tr>
-        <tr><td>Amit</td><td>ECE</td><td>Math</td><td>65</td></tr>
-        <tr><td>Priya</td><td>IT</td><td>Science</td><td>0</td></tr>
+    <div class="chart-container">
+        <h2>Subject Comparison (Math vs Science)</h2>
+        <canvas id="subjectChart"></canvas>
+    </div>
+
+    <div style="text-align:center; margin-bottom: 20px;">
+        <label for="deptFilter"><strong>Filter by Department:</strong></label>
+        <select id="deptFilter">
+            <option value="All">All</option>
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="ECE">ECE</option>
+            <option value="ME">ME</option>
+        </select>
+    </div>
+
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Shreya</td><td>CSE</td><td>Math</td><td>85</td></tr>
+            <tr><td>Shreya</td><td>CSE</td><td>Science</td><td>79</td></tr>
+            <tr><td>Rahul</td><td>CSE</td><td>Math</td><td>90</td></tr>
+            <tr><td>Rahul</td><td>CSE</td><td>Science</td><td>78</td></tr>
+            <tr><td>Ananya</td><td>IT</td><td>Science</td><td>72</td></tr>
+            <tr><td>Amit</td><td>ECE</td><td>Math</td><td>80</td></tr>
+            <tr><td>Riya</td><td>ME</td><td>Math</td><td>91</td></tr>
+            <tr><td>Kabir</td><td>IT</td><td>Math</td><td>90</td></tr>
+            <tr><td>Zoya</td><td>ECE</td><td>Science</td><td>74</td></tr>
+            <tr><td>Priya</td><td>CSE</td><td>Math</td><td>89</td></tr>
+            <tr><td>Arjun</td><td>ECE</td><td>Math</td><td>80</td></tr>
+            <tr><td>Arjun</td><td>ECE</td><td>Science</td><td>72</td></tr>
+            <tr><td>Sneha</td><td>IT</td><td>Science</td><td>88</td></tr>
+        </tbody>
     </table>
 
     <script>
-        const labels = ["Amit", "Ananya", "Priya", "Rahul", "Shreya"];
-        const values = [65, 78, 0, 45, 81.5];
+        // Average Marks per Student Chart
+        const labels = ["Amit", "Ananya", "Arjun", "Kabir", "Priya", "Rahul", "Riya", "Shreya", "Sneha", "Zoya"];
+        const values = [80, 72, 76, 90, 89, 84, 91, 82, 88, 74];
 
         const ctx = document.getElementById('marksChart').getContext('2d');
 
@@ -62,16 +88,67 @@
                     label: 'Average Marks',
                     data: values,
                     backgroundColor: '#1f3c88',
-                    minBarLength: 3
+                    minBarLength: 2
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                    y: { beginAtZero: true }
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
+        });
+
+        // Subject Comparison Chart
+        const subjectCtx = document.getElementById('subjectChart').getContext('2d');
+
+        new Chart(subjectCtx, {
+            type: 'bar',
+            data: {
+                labels: ["Shreya", "Rahul", "Ananya", "Amit", "Riya", "Kabir", "Zoya", "Priya", "Arjun", "Sneha"],
+                datasets: [
+                    {
+                        label: "Math",
+                        data: [85, 90, 0, 80, 91, 90, 0, 89, 80, 0],
+                        backgroundColor: "#1f3c88"
+                    },
+                    {
+                        label: "Science",
+                        data: [79, 78, 72, 0, 0, 0, 74, 0, 72, 88],
+                        backgroundColor: "#4CAF50"
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Department Filter for Table
+        const deptFilter = document.getElementById('deptFilter');
+        const tableRows = document.querySelectorAll('#studentTable tbody tr');
+
+        deptFilter.addEventListener('change', function () {
+            const selectedDept = this.value;
+
+            tableRows.forEach(row => {
+                const dept = row.cells[1].textContent;
+
+                if (selectedDept === "All" || dept === selectedDept) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
         });
     </script>
 
